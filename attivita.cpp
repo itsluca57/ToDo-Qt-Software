@@ -1,5 +1,7 @@
 #include "attivita.h"
 
+Attivita::Attivita() : Attivita(0, "", "", QDateTime::currentDateTime(), Priorita::Bassa, "ToDo", false) {}
+
 Attivita::Attivita(int id,
                    const QString& nome,
                    const QString& descrizione,

@@ -17,6 +17,7 @@ private:
     QString categoria;
 
 public:
+    Attivita();
     Attivita(int id,
              const QString& nome,
              const QString& descrizione,
