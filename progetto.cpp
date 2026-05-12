@@ -61,3 +61,28 @@ void Progetto::fromJson(const QJsonObject& json) {
         }
     }
 }
+
+void Progetto::addFase(Attivita* fase) {
+    if (fase && !fasi.contains(fase)) {
+        fasi.append(fase);
+    }
+}
+
+void Progetto::removeFase(int idFase) {
+    for (int i = 0; i < fasi.size(); ++i) {
+        if (fasi[i]->getId() == idFase) {
+            delete fasi.takeAt(i);
+            return;
+        }
+    }
+}
+
+void Progetto::updateFase(int idFase, const QJsonObject& dati) {
+    for (Attivita* fase : std::as_const(fasi)) {
+        if (fase->getId() == std::as_const(idFase)) {
+            fase->fromJson(dati);
+            fase->setId(idFase);
+            return;
+        }
+    }
+}

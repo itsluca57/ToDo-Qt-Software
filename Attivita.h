@@ -26,6 +26,9 @@ public:
              const QString& categoria,
              bool completata=false);
     virtual ~Attivita();
+    bool isScaduta() const;
+
+    //Gestione Json
     virtual QJsonObject toJson() const = 0;
     virtual void fromJson(const QJsonObject& json);
 
@@ -39,6 +42,7 @@ public:
     QString getCategoria() const {return categoria;}
 
     //Setter
+    void setId(int i) {id=i;}
     void setNome(const QString& n) {nome = n;}
     void setDescrizione(const QString& d) {descrizione = d;}
     void setData(const QDateTime& d) {data = d;}

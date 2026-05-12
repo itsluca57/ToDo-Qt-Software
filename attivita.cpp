@@ -19,6 +19,10 @@ Attivita::Attivita(int id,
 
 Attivita::~Attivita() {}
 
+bool Attivita::isScaduta() const {
+    return !completata && data < QDateTime::currentDateTime();
+}
+
 QJsonObject Attivita::toJson() const {
     QJsonObject json;
     json["id"] = id;

@@ -5,6 +5,7 @@
 
 class AttivitaFactory {
 public:
+    static Attivita* create(const QString& tipo);
     static Attivita* create(const QJsonObject& json);
 };
 

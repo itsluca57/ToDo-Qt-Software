@@ -19,8 +19,15 @@ public:
              int faseAttuale,
              bool completata=false);
     virtual ~Progetto();
+
+    //Gestione Json
     virtual QJsonObject toJson() const override;
     virtual void fromJson(const QJsonObject& json) override;
+
+    //Gestione Fasi
+    void addFase(Attivita* fase);
+    void removeFase(int idFase);
+    void updateFase(int idFase, const QJsonObject& dati);
 
     //Getter
     QList<Attivita*> getFasi() const {return fasi;}
