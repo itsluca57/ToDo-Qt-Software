@@ -2,12 +2,16 @@
 #define MANAGERATTIVITA_H
 
 #include "Attivita.h"
-#include "AttivitaFactory.h"
+#include "FactoryAttivita.h"
+#include "ComparatorAttivita.h"
 
-class ManagerAttivita {
+class ManagerAttivita: public QObject {
+    Q_OBJECT
+signals:
+    void datiCambiati();
 private:
     QList<Attivita*> listaAttivita;
-    AttivitaFactory factory;
+    FactoryAttivita factory;
     int nextId;
 
     Attivita* findById(int id) const;
@@ -19,8 +23,8 @@ public:
     void addAttivita(Attivita* nuova);
     void removeAttivita(int id);
     void updateAttivita(int id, const QJsonObject& dati);
-    QList<Attivita*> filterAttivita(const QString& categoria="", Priorita priorita=Priorita::Qualsiasi,
-                                   const QDate& dataInizio=QDate(), const QDate& dataFine=QDate(), const QString& testo="") const;
+    QList<Attivita*> getVista(const ComparatorAttivita& comparator, const CriteriRicerca& filtro) const;
+    QList<Attivita*> getVista(const CriteriRicerca& filtro) const;
 
     //Getter
     int getNextId() const {return nextId;}

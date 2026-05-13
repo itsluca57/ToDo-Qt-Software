@@ -34,10 +34,14 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         ricorrente.cpp
         Progetto.h
         progetto.cpp
-        AttivitaFactory.h
-        attivitafactory.cpp
+        FactoryAttivita.h
+        factoryattivita.cpp
         ManagerAttivita.h
         managerattivita.cpp
+        ComparatorAttivita.h
+        CompareData.h
+        ComparePriorita.h
+        CompareNome.h
     )
 # Define target properties for Android with Qt 6 as:
 #    set_property(TARGET ToDo APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR

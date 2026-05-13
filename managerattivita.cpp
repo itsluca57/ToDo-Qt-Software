@@ -1,5 +1,6 @@
 #include "ManagerAttivita.h"
 #include "Progetto.h"
+#include "CompareData.h"
 #include <QFile>
 #include <QJsonDocument>
 #include <QJsonArray>
@@ -38,6 +39,7 @@ void ManagerAttivita::addAttivita(Attivita* nuova) {
             this->addAttivita(fase);
         }
     }
+    emit datiCambiati();
 }
 
 void ManagerAttivita::removeAttivita(int id) {
@@ -47,6 +49,7 @@ void ManagerAttivita::removeAttivita(int id) {
             return;
         }
     }
+    emit datiCambiati();
 }
 
 void ManagerAttivita::updateAttivita(int id, const QJsonObject& dati) {
@@ -55,6 +58,7 @@ void ManagerAttivita::updateAttivita(int id, const QJsonObject& dati) {
         esistente->fromJson(dati);
         esistente->setId(id);
     }
+    emit datiCambiati();
 }
 
 bool ManagerAttivita::save(const QString& nomeFile) const {
@@ -90,31 +94,33 @@ bool ManagerAttivita::load(const QString& nomeFile) {
             addAttivita(a);
         }
     }
+    emit datiCambiati();
     return true;
 }
 
-QList<Attivita*> ManagerAttivita::filterAttivita(const QString& categoria, Priorita priorita,
-                                                  const QDate& dataInizio, const QDate& dataFine,
-                                                  const QString& testo) const {
+QList<Attivita*> ManagerAttivita::getVista(const ComparatorAttivita& comparator, const CriteriRicerca& filtro) const {
     QList<Attivita*> risultati;
 
-    for (Attivita* a : listaAttivita) {
+    for (Attivita* a : std::as_const(listaAttivita)) {
         bool accettato = true;
 
-        if (!categoria.isEmpty() && a->getCategoria() != categoria) accettato = false;
-        if (priorita != Priorita::Qualsiasi && a->getPriorita() != priorita) accettato = false;
-
-        QDate dataA = a->getData().date();
-        if (dataInizio.isValid() && dataA < dataInizio) accettato = false;
-        if (dataFine.isValid() && dataA > dataFine) accettato = false;
-
-        if (!testo.isEmpty()) {
-            bool trovato = a->getNome().contains(testo, Qt::CaseInsensitive) ||
-                           a->getDescrizione().contains(testo, Qt::CaseInsensitive);
-            if (!trovato) accettato = false;
-        }
+        if (!filtro.testo.isEmpty() && !a->getNome().contains(filtro.testo, Qt::CaseInsensitive)) accettato = false;
+        if (accettato && filtro.categoria != "Tutte" && a->getCategoria() != filtro.categoria) accettato = false;
+        if (accettato && filtro.priorita != Priorita::Qualsiasi && a->getPriorita() != filtro.priorita) accettato = false;
+        if (accettato && filtro.dataInizio.isValid() && a->getData().date() < filtro.dataInizio) accettato = false;
+        if (accettato && filtro.dataFine.isValid() && a->getData().date() > filtro.dataFine) accettato = false;
 
         if (accettato) risultati.append(a);
     }
+
+    std::sort(risultati.begin(), risultati.end(), [&comparator](Attivita* a, Attivita* b) {
+        return comparator.compare(a, b);
+    });
+
     return risultati;
+}
+
+QList<Attivita*> ManagerAttivita::getVista(const CriteriRicerca& filtro) const {
+    CompareData defaultCompare;
+    return getVista(defaultCompare, filtro);
 }

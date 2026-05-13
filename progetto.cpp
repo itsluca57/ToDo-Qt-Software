@@ -1,5 +1,5 @@
 #include "progetto.h"
-#include "AttivitaFactory.h"
+#include "FactoryAttivita.h"
 #include <qjsonarray.h>
 
 Progetto::Progetto(): Attivita(), faseAttuale(0) {}
@@ -53,7 +53,7 @@ void Progetto::fromJson(const QJsonObject& json) {
         for (QJsonArray::const_iterator it=arrayFasi.begin(); it!=arrayFasi.end(); ++it) {
             QJsonObject faseJson = (*it).toObject();
 
-            Attivita* nuovaFase = AttivitaFactory::create(faseJson);
+            Attivita* nuovaFase = FactoryAttivita::create(faseJson);
 
             if (nuovaFase) {
                 fasi.append(nuovaFase);
