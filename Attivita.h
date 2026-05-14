@@ -12,9 +12,9 @@ private:
     QString nome;
     QString descrizione;
     QDateTime data;
-    bool completata;
     Priorita priorita;
     QString categoria;
+    bool completata;
 
 public:
     Attivita();
