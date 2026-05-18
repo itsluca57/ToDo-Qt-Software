@@ -1,6 +1,6 @@
 #include "Evento.h"
 
-Evento::Evento(): Attivita(), dataFine(QDateTime::currentDateTime()), luogo(""), giornaliero(false) {}
+Evento::Evento(): Attivita(), dataFine(QDateTime::currentDateTime()), luogo("") {}
 
 Evento::Evento(int id,
                const QString& nome,
@@ -10,10 +10,9 @@ Evento::Evento(int id,
                const QString& categoria,
                const QDateTime& dataFine,
                const QString& luogo,
-               bool giornaliero,
                bool completata):
                 Attivita(id,nome,descrizione,data,priorita,categoria,completata),
-                dataFine(dataFine),luogo(luogo),giornaliero(giornaliero) {}
+                dataFine(dataFine),luogo(luogo) {}
 
 Evento::~Evento() {}
 
@@ -22,7 +21,6 @@ QJsonObject Evento::toJson() const {
     json["tipo"] = "Evento";
     json["dataFine"] = dataFine.toString(Qt::ISODate);
     json["luogo"] = luogo;
-    json["giornaliero"] = giornaliero;
     return json;
 }
 
@@ -33,5 +31,4 @@ void Evento::fromJson(const QJsonObject& json) {
         dataFine = QDateTime::fromString(dataString,Qt::ISODate);
     }
     if(json.contains("luogo")) luogo = json["luogo"].toString();
-    if(json.contains("giornaliero")) giornaliero = json["giornaliero"].toBool();
 }

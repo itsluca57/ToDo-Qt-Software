@@ -5,7 +5,7 @@
 #include <QJsonDocument>
 #include <QJsonArray>
 
-ManagerAttivita::ManagerAttivita() : nextId(1) {}
+ManagerAttivita::ManagerAttivita() : nextId(0) {categorie.addCategoria("Qualsiasi", "#FFFFFF");}
 
 ManagerAttivita::~ManagerAttivita() {
     qDeleteAll(listaAttivita);

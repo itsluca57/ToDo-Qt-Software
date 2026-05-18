@@ -1,0 +1,9 @@
+<RCC>
+    <qresource prefix="/">
+        <file>icone/add.png</file>
+        <file>icone/filter.png</file>
+        <file>icone/minus.png</file>
+        <file>icone/pencil.png</file>
+        <file>icone/search.png</file>
+    </qresource>
+</RCC>

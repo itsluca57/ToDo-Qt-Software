@@ -14,9 +14,9 @@ find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets)
 
 set(PROJECT_SOURCES
         main.cpp
-        mainwindow.cpp
-        mainwindow.h
-        mainwindow.ui
+        interfaccia.cpp
+        interfaccia.h
+        interfaccia.ui
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
@@ -42,6 +42,9 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         CompareData.h
         ComparePriorita.h
         CompareNome.h
+        risorse.qrc
+        RegistroCategorie.h
+        registrocategorie.cpp
     )
 # Define target properties for Android with Qt 6 as:
 #    set_property(TARGET ToDo APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR

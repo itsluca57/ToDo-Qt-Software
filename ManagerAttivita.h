@@ -4,6 +4,7 @@
 #include "Attivita.h"
 #include "FactoryAttivita.h"
 #include "ComparatorAttivita.h"
+#include "RegistroCategorie.h"
 
 class ManagerAttivita: public QObject {
     Q_OBJECT
@@ -12,6 +13,7 @@ signals:
 private:
     QList<Attivita*> listaAttivita;
     FactoryAttivita factory;
+    RegistroCategorie categorie;
     int nextId;
 
     Attivita* findById(int id) const;
@@ -27,7 +29,9 @@ public:
     QList<Attivita*> getVista(const CriteriRicerca& filtro) const;
 
     //Getter
-    int getNextId() const {return nextId;}
+    int getNextId() {nextId++; return nextId;}
+    RegistroCategorie* getRegistroCategorie() {return &categorie;}
+    FactoryAttivita* getFactory() {return &factory;}
 
     //Setter
     void setNextId(int next) {nextId=next;}

@@ -7,7 +7,6 @@ class Evento: public Attivita{
 private:
     QDateTime dataFine;
     QString luogo;
-    bool giornaliero;
 public:
     Evento();
     Evento(int id,
@@ -18,7 +17,6 @@ public:
            const QString& categoria,
            const QDateTime& dataFine,
            const QString& luogo,
-           bool giornaliero,
            bool completata=false);
     virtual ~Evento();
     virtual QJsonObject toJson() const override;
@@ -27,12 +25,10 @@ public:
     //Getter
     QDateTime getDataFine() const {return dataFine;}
     QString getLuogo() const {return luogo;}
-    bool getGiornaliero() const {return giornaliero;}
 
     //Setter
     void setDataFine(const QDateTime& df) {dataFine=df;}
     void setLuogo(const QString& l) {luogo=l;}
-    void setGiornaliero(bool g) {giornaliero=g;}
 };
 
 #endif // EVENTO_H
