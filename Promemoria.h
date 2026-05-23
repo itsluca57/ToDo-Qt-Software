@@ -20,6 +20,9 @@ public:
     virtual QJsonObject toJson() const override;
     virtual void fromJson(const QJsonObject& json) override;
 
+    //Visitor
+    virtual void accept(VisitorAttivita* visitor) override;
+
     //Getter
     int getPreavviso() const {return preavviso;}
 

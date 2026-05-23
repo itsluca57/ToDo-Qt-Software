@@ -15,6 +15,7 @@ public:
 
     bool esisteCategoria(const QString& nome) const;
     void addCategoria(const QString& nome, const QString& hexColore);
+    void deleteCategoria(const QString& nome);
     QList<QString> getListaCategorie() const;
     QString getCodiceColoreCategoria(const QString& nome) const;
 };

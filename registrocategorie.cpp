@@ -10,6 +10,10 @@ void RegistroCategorie::addCategoria(const QString& nome, const QString& hexColo
     }
 }
 
+void RegistroCategorie::deleteCategoria(const QString& nome) {
+    coloriCategorie.remove(nome);
+}
+
 QList<QString> RegistroCategorie::getListaCategorie() const {
     return coloriCategorie.keys();
 }

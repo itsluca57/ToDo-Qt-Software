@@ -17,6 +17,11 @@ Ricorrente::Ricorrente(int id,
 
 Ricorrente::~Ricorrente() {}
 
+//Visitor
+void Ricorrente::accept(VisitorAttivita* visitor) {
+    visitor->visit(this);
+}
+
 QJsonObject Ricorrente::toJson() const {
     QJsonObject json = Attivita::toJson();
     json["tipo"] = "Ricorrente";

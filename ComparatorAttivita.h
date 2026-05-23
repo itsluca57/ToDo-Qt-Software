@@ -1,7 +1,7 @@
 #ifndef COMPARATORATTIVITA_H
 #define COMPARATORATTIVITA_H
 
-#include"Attivita.h"
+#include "Attivita.h"
 
 class ComparatorAttivita {
 public:

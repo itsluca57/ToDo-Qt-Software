@@ -22,6 +22,9 @@ public:
     virtual QJsonObject toJson() const override;
     virtual void fromJson(const QJsonObject& json) override;
 
+    //Visitor
+    virtual void accept(VisitorAttivita* visitor) override;
+
     //Getter
     QDateTime getDataFine() const {return dataFine;}
     QString getLuogo() const {return luogo;}

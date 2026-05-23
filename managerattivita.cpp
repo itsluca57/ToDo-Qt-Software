@@ -39,7 +39,6 @@ void ManagerAttivita::addAttivita(Attivita* nuova) {
             this->addAttivita(fase);
         }
     }
-    emit datiCambiati();
 }
 
 void ManagerAttivita::removeAttivita(int id) {
@@ -49,7 +48,6 @@ void ManagerAttivita::removeAttivita(int id) {
             return;
         }
     }
-    emit datiCambiati();
 }
 
 void ManagerAttivita::updateAttivita(int id, const QJsonObject& dati) {
@@ -58,7 +56,6 @@ void ManagerAttivita::updateAttivita(int id, const QJsonObject& dati) {
         esistente->fromJson(dati);
         esistente->setId(id);
     }
-    emit datiCambiati();
 }
 
 bool ManagerAttivita::save(const QString& nomeFile) const {
@@ -94,7 +91,7 @@ bool ManagerAttivita::load(const QString& nomeFile) {
             addAttivita(a);
         }
     }
-    emit datiCambiati();
+
     return true;
 }
 

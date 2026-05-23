@@ -15,6 +15,11 @@ Promemoria::Promemoria(int id,
 
 Promemoria::~Promemoria() {}
 
+//Visitor
+void Promemoria::accept(VisitorAttivita* visitor) {
+    visitor->visit(this);
+}
+
 QJsonObject Promemoria::toJson() const {
     QJsonObject json = Attivita::toJson();
     json["tipo"] = "Promemoria";

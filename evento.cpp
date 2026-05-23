@@ -16,6 +16,11 @@ Evento::Evento(int id,
 
 Evento::~Evento() {}
 
+//Visitor
+void Evento::accept(VisitorAttivita* visitor) {
+    visitor->visit(this);
+}
+
 QJsonObject Evento::toJson() const {
     QJsonObject json = Attivita::toJson();
     json["tipo"] = "Evento";

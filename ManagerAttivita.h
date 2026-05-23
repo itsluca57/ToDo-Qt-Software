@@ -6,10 +6,8 @@
 #include "ComparatorAttivita.h"
 #include "RegistroCategorie.h"
 
-class ManagerAttivita: public QObject {
-    Q_OBJECT
-signals:
-    void datiCambiati();
+class ManagerAttivita {
+
 private:
     QList<Attivita*> listaAttivita;
     FactoryAttivita factory;
@@ -27,11 +25,13 @@ public:
     void updateAttivita(int id, const QJsonObject& dati);
     QList<Attivita*> getVista(const ComparatorAttivita& comparator, const CriteriRicerca& filtro) const;
     QList<Attivita*> getVista(const CriteriRicerca& filtro) const;
+    int newNextId() {nextId++; return nextId;}
 
     //Getter
-    int getNextId() {nextId++; return nextId;}
+    int getNextId() {return nextId;}
     RegistroCategorie* getRegistroCategorie() {return &categorie;}
     FactoryAttivita* getFactory() {return &factory;}
+    const QList<Attivita*>& getListaAttivita() const {return listaAttivita;}
 
     //Setter
     void setNextId(int next) {nextId=next;}

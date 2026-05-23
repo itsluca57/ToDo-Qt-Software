@@ -12,11 +12,12 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets)
 find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets)
 
+# --- RIPRISTINATI I NOMI INTERFACCIA ---
 set(PROJECT_SOURCES
         main.cpp
-        interfaccia.cpp
-        interfaccia.h
-        interfaccia.ui
+        MainWindow.cpp
+        MainWindow.h
+        MainWindow.ui
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
@@ -24,7 +25,7 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         MANUAL_FINALIZATION
         ${PROJECT_SOURCES}
         tipi.h
-        attivita.h
+        Attivita.h             # Lettera A maiuscola come sul tuo disco
         attivita.cpp
         Promemoria.h
         promemoria.cpp
@@ -45,18 +46,15 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         risorse.qrc
         RegistroCategorie.h
         registrocategorie.cpp
+        VisitorAttivita.h      # Aggiunto per non avere errori dopo
+        VisitorGui.h           # Aggiunto per non avere errori dopo
+        VisitorGui.cpp         # Aggiunto per non avere errori dopo
     )
-# Define target properties for Android with Qt 6 as:
-#    set_property(TARGET ToDo APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR
-#                 ${CMAKE_CURRENT_SOURCE_DIR}/android)
-# For more information, see https://doc.qt.io/qt-6/qt-add-executable.html#target-creation
 else()
     if(ANDROID)
         add_library(ToDo SHARED
             ${PROJECT_SOURCES}
         )
-# Define properties for Android with Qt 5 after find_package() calls as:
-#    set(ANDROID_PACKAGE_SOURCE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/android")
     else()
         add_executable(ToDo
             ${PROJECT_SOURCES}
@@ -66,9 +64,6 @@ endif()
 
 target_link_libraries(ToDo PRIVATE Qt${QT_VERSION_MAJOR}::Widgets)
 
-# Qt for iOS sets MACOSX_BUNDLE_GUI_IDENTIFIER automatically since Qt 6.1.
-# If you are developing for iOS or macOS you should consider setting an
-# explicit, fixed bundle identifier manually though.
 if(${QT_VERSION} VERSION_LESS 6.1.0)
   set(BUNDLE_ID_OPTION MACOSX_BUNDLE_GUI_IDENTIFIER com.example.ToDo)
 endif()

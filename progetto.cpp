@@ -21,6 +21,11 @@ Progetto::~Progetto() {
     qDeleteAll(fasi);
 }
 
+//Visitor
+void Progetto::accept(VisitorAttivita* visitor) {
+    visitor->visit(this);
+}
+
 QJsonObject Progetto::toJson() const {
     QJsonObject json = Attivita::toJson();
     json["tipo"] = "Progetto";

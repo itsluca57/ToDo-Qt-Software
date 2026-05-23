@@ -1,6 +1,7 @@
 #ifndef ATTIVITA_H
 #define ATTIVITA_H
 
+#include "VisitorAttivita.h"
 #include "tipi.h"
 #include <QString>
 #include <QDateTime>
@@ -27,6 +28,9 @@ public:
              bool completata=false);
     virtual ~Attivita();
     bool isScaduta() const;
+
+    //Visitor
+    virtual void accept(VisitorAttivita* visitor) = 0;
 
     //Gestione Json
     virtual QJsonObject toJson() const = 0;
