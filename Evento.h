@@ -19,6 +19,8 @@ public:
            const QString& luogo,
            bool completata=false);
     virtual ~Evento();
+
+    //Gestione Json
     virtual QJsonObject toJson() const override;
     virtual void fromJson(const QJsonObject& json) override;
 

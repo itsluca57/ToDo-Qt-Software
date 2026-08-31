@@ -5,5 +5,11 @@
         <file>icone/minus.png</file>
         <file>icone/pencil.png</file>
         <file>icone/search.png</file>
+        <file>icone/ordinamento.png</file>
+        <file>icone/icons8-aggiungi-50.png</file>
+        <file>icone/freccia_giu.png</file>
+        <file>icone/freccia_su.png</file>
+        <file>icone/icons8-cestino-24.png</file>
+        <file>icone/icons8-rimuovi-50.png</file>
     </qresource>
 </RCC>

@@ -1,6 +1,7 @@
 #ifndef ATTIVITA_H
 #define ATTIVITA_H
 
+#include "RegistroCategorie.h"
 #include "VisitorAttivita.h"
 #include "tipi.h"
 #include <QString>
@@ -40,7 +41,7 @@ public:
     int getId() const {return id;}
     QString getNome() const {return nome;}
     QString getDescrizione() const {return descrizione;}
-    QDateTime getData() const {return data;}
+    virtual QDateTime getData() const {return data;}
     bool isCompletata() const {return completata;}
     Priorita getPriorita() const {return priorita;}
     QString getCategoria() const {return categoria;}

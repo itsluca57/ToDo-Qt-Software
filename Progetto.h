@@ -31,10 +31,18 @@ public:
     void addFase(Attivita* fase);
     void removeFase(int idFase);
     void updateFase(int idFase, const QJsonObject& dati);
+    void ordinaAggiornaFasi();
 
     //Getter
     QList<Attivita*> getFasi() const {return fasi;}
     int getFaseAttuale() const {return faseAttuale;}
+    QDateTime getData() const override {
+        //Restituisco la scadenza della sotto attività attuale
+        if (faseAttuale < fasi.size() && fasi.at(faseAttuale) != nullptr) {
+            return fasi.at(faseAttuale)->getData();
+        }
+        return Attivita::getData();
+    }
 
     //Setter
     void setFasi(const QList<Attivita*>& f) {

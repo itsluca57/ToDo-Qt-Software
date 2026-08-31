@@ -26,29 +26,31 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         ${PROJECT_SOURCES}
         tipi.h
         Attivita.h             # Lettera A maiuscola come sul tuo disco
-        attivita.cpp
+        Attivita.cpp
         Promemoria.h
-        promemoria.cpp
+        Promemoria.cpp
         Evento.h
-        evento.cpp
+        Evento.cpp
         Ricorrente.h
-        ricorrente.cpp
+        Ricorrente.cpp
         Progetto.h
-        progetto.cpp
+        Progetto.cpp
         FactoryAttivita.h
-        factoryattivita.cpp
+        FactoryAttivita.cpp
         ManagerAttivita.h
-        managerattivita.cpp
+        ManagerAttivita.cpp
         ComparatorAttivita.h
         CompareData.h
         ComparePriorita.h
-        CompareNome.h
+
         risorse.qrc
         RegistroCategorie.h
-        registrocategorie.cpp
+        RegistroCategorie.cpp
         VisitorAttivita.h      # Aggiunto per non avere errori dopo
         VisitorGui.h           # Aggiunto per non avere errori dopo
-        VisitorGui.cpp         # Aggiunto per non avere errori dopo
+        VisitorGui.cpp
+        VisitorInfo.cpp
+        VisitorInfo.h         # Aggiunto per non avere errori dopo
     )
 else()
     if(ANDROID)

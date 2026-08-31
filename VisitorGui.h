@@ -1,8 +1,9 @@
 #ifndef VISITORGUI_H
 #define VISITORGUI_H
 
+#include "RegistroCategorie.h"
 #include "VisitorAttivita.h"
-#include "ui_MainWindow.h"
+#include <qtablewidget.h>
 
 
 class Promemoria;
@@ -11,17 +12,18 @@ class Ricorrente;
 class Progetto;
 
 class VisitorGui : public VisitorAttivita {
-public:
+private:
+    QTableWidget* table;
+    const RegistroCategorie* registroCategorie;
 
-    VisitorGui(Ui::MainWindow* interfacciaUi);
+public:
+    VisitorGui(QTableWidget* table, const RegistroCategorie* registroCategorie);
+    virtual ~VisitorGui() = default;
 
     void visit(Promemoria* p) override;
     void visit(Evento* e) override;
     void visit(Ricorrente* r) override;
     void visit(Progetto* pr) override;
-
-private:
-    Ui::MainWindow* ui;
 };
 
 #endif // VISITORGUI_H

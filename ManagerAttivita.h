@@ -3,29 +3,35 @@
 
 #include "Attivita.h"
 #include "FactoryAttivita.h"
-#include "ComparatorAttivita.h"
 #include "RegistroCategorie.h"
 
-class ManagerAttivita {
+class ManagerAttivita: public QObject {
+    Q_OBJECT
+signals:
+    void modAttivita();
 
 private:
     QList<Attivita*> listaAttivita;
     FactoryAttivita factory;
     RegistroCategorie categorie;
     int nextId;
-
-    Attivita* findById(int id) const;
 public:
     ManagerAttivita();
     virtual ~ManagerAttivita();
+
+    //File
     bool save(const QString& nomeFile) const;
-    bool load(const QString& nomeFile);
+    bool load(const QString& nomeFile, bool sovrascrivi);
+
+    //Gestione attività
+    Attivita* findById(int id) const;
     void addAttivita(Attivita* nuova);
     void removeAttivita(int id);
-    void updateAttivita(int id, const QJsonObject& dati);
-    QList<Attivita*> getVista(const ComparatorAttivita& comparator, const CriteriRicerca& filtro) const;
-    QList<Attivita*> getVista(const CriteriRicerca& filtro) const;
     int newNextId() {nextId++; return nextId;}
+    void setCompletata(int id, bool completata);
+
+    //Aggiorna scadenza attività ricorrenti
+    void aggiornaRicorrenti();
 
     //Getter
     int getNextId() {return nextId;}

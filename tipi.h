@@ -17,12 +17,4 @@ enum class Frequenza{
     Mensile
 };
 
-struct CriteriRicerca {
-    QString testo = "";
-    QString categoria = "Qualsiasi";
-    Priorita priorita = Priorita::Qualsiasi;
-    QDate dataInizio;
-    QDate dataFine;
-};
-
 #endif // TIPI_H

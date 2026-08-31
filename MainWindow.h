@@ -3,6 +3,7 @@
 
 #include "Attivita.h"
 #include <QMainWindow>
+#include <qtablewidget.h>
 
 class ManagerAttivita;
 
@@ -22,7 +23,7 @@ private slots:
 
     void on_listCategorie_itemSelectionChanged();
 
-    void on_addButton_clicked();
+    void on_addAttivitaBtn_clicked();
 
     void on_radioEvento_toggled(bool checked);
 
@@ -42,19 +43,57 @@ private slots:
 
     void on_attivitaSaveBtn_clicked();
 
-    void on_sottoactBtn_clicked();
+    void on_addSottoActBtn_clicked();
 
     void on_catDeleteBtn_clicked();
 
+    void on_tableAttivita_itemSelectionChanged();
+
+    void on_tableAttivita_itemChanged(QTableWidgetItem *item);
+
+    void on_deleteAttivitaBtn_clicked();
+
+    void on_modAttivitaBtn_clicked();
+
+    void on_tableFasi_itemSelectionChanged();
+
+    void on_deleteSottoActBtn_clicked();
+
+    void on_modSottoActBtn_clicked();
+
+    void on_filterButton_clicked();
+
+    void on_escFilterBtn_clicked();
+
+    void on_prioritaBtn_clicked();
+
+    void on_scadenzaBtn_clicked();
+
+    void on_searchLine_textChanged(const QString &arg1);
+
+    void on_actionImporta_triggered();
+
+    void on_actionEsporta_triggered();
+
+    void on_catModBtn_clicked();
+
 private:
+    //Attributi
     Ui::MainWindow *ui;
     ManagerAttivita* model;
     QList<Attivita*> fasiTemp;
     Progetto* progettoInCreazione;
     bool modalitaFasi = false;
+    int idAttivitaModifica = -1; //-1 -> Creazione
+    int idFaseModifica = -1;
+    bool catMod = false;
+    QString catTarget;
 
+    //Metodi
     void aggiornaCategorie();
     void aggiornaAttivita();
+    void aggiornaFasi();
+    void configuraShortcut();
 };
 
 #endif // MAINWINDOW_H

@@ -17,6 +17,8 @@ public:
                const QString& categoria,
                bool completata=false);
     virtual ~Promemoria();
+
+    //Gestione Json
     virtual QJsonObject toJson() const override;
     virtual void fromJson(const QJsonObject& json) override;
 
